@@ -6,6 +6,8 @@ import (
 	"net"
 	"sync"
 	"github.com/TonyLe02/is105sem03/mycrypt"
+	"github.com/TonyLe02/funtemps/conv"
+	"fmt"
 )
 
 func main() {
@@ -41,6 +43,12 @@ func main() {
 					log.Println("Dekrypter melding: ", string(dekryptertMelding))
 					switch msg := string(dekryptertMelding); msg {  				        case "ping":
 						_, err = c.Write([]byte("pong"))
+					case "Kjevik":
+
+						var celsius float64 = 6
+						fahrenheit := conv.CelsiusToFarhenheit(celsius)
+						response := fmt.Sprintf("Kjevik;SN39040;18.03.2022 01:50;%.2f", fahrenheit)
+						_, err = c.Write([]byte(response))	
 					default:
 						_, err = c.Write(buf[:n])
 					}
