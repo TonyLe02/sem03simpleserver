@@ -41,14 +41,17 @@ func main() {
 					}
 					dekryptertMelding := mycrypt.Krypter([]rune(string(buf[:n])), mycrypt.ALF_SEM03, len(mycrypt.ALF_SEM03)-4)
 					log.Println("Dekrypter melding: ", string(dekryptertMelding))
-					switch msg := string(dekryptertMelding); msg {  				        case "ping":
+					switch msg := string(dekryptertMelding); msg {  				        
+					case "ping":
 						_, err = c.Write([]byte("pong"))
-					case "Kjevik":
+
+					case "Kjevik;SN39040;18.03.2022 01:50;6":
 
 						var celsius float64 = 6
 						fahrenheit := conv.CelsiusToFarhenheit(celsius)
 						response := fmt.Sprintf("Kjevik;SN39040;18.03.2022 01:50;%.2f", fahrenheit)
-						_, err = c.Write([]byte(response))	
+						_, err = c.Write([]byte(response))
+
 					default:
 						_, err = c.Write(buf[:n])
 					}
