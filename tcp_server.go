@@ -54,7 +54,7 @@ func main() {
 						_, err = c.Write([]byte(response))
 
 					default:
-						_, err = c.Write(buf[:n])
+						_, err = c.Write([]byte(msg))
 					}
 					if err != nil {
 						if err != io.EOF {
